@@ -1,0 +1,32 @@
+﻿<Window x:Class="Stocks.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Stocks" xmlns:oxy="http://oxyplot.org/wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="64,56,0,0">
+        <TextBox x:Name="StockTicker" HorizontalAlignment="Left" Margin="-1,-38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="Ticker_TextChanged" AutomationProperties.HelpText="Enter Ticker"/>
+        <Label Content="Ticker" HorizontalAlignment="Left" Margin="-56,-42,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="ROE" Content="ROE" HorizontalAlignment="Left" Margin="412,-42,0,0" VerticalAlignment="Top"/>
+        <Button Content="Chart" HorizontalAlignment="Left" Margin="139,-39,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <oxy:Plot x:Name="TickerPlot" Title="{Binding Title}" Margin="-35,0,223,37">
+            <oxy:Plot.Series>
+                <oxy:LineSeries ItemsSource="{Binding PointsClose}"/>
+                <oxy:LineSeries ItemsSource="{Binding PointsOpen}"/>
+                <oxy:LineSeries ItemsSource="{Binding PointsHigh}"/>
+                <oxy:LineSeries ItemsSource="{Binding PointsLow}"/>
+            </oxy:Plot.Series>
+        </oxy:Plot>
+        <ListView x:Name="Volume_Per_Day" Margin="518,10,0,37">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="Zoom" Content="Zoom" HorizontalAlignment="Left" Margin="206,-38,0,0" VerticalAlignment="Top" Click="Button_Click_Zoom"/>
+        <ComboBox x:Name="Timeframe" HorizontalAlignment="Left" Margin="269,-38,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="Timeframe_SelectionChanged"/>
+    </Grid>
+</Window>
